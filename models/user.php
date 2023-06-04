@@ -25,7 +25,16 @@ class User extends BaseModel{
 	}
 
 	public function getPhone() {
-		return $this->getField('phone') ?? 'Not available';
+		return $this->getField('phone') ?? '';
 	}
 	
+	/**
+	 * Check if provided email address is already in database
+	 * @param string $email email address to look for
+	 * @return bool Value exists
+	 */
+	public function emailExists(string $email) : bool
+	{
+		return boolval($this->findFirst($this->db, ['email'], ['email' => $email]));
+	}
 }
