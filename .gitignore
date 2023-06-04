@@ -2,3 +2,5 @@
 .project
 /config/database.php
 .vscode
+.htaccess
+.user.ini
