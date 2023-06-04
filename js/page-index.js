@@ -24,7 +24,7 @@ $(function () {
     tableFilterInit('#users-table-index', 2, '#users-table-filter-index');
 
     /**
-     * Initialize table filter (expects select to have value for "0=all")
+     * Initialize table filter
      * @param {string} tableSelector jQuery unique selector
      * @param {int} columnIndex  Index of column to apply filter (starting with 0)
      * @param {string} selectSelector  jQuery unique selector
@@ -33,6 +33,10 @@ $(function () {
 
         var uniqueValues = [];
         var selectNode = $(selectSelector);
+
+        // Reset table When running repeatedly
+        $(tableSelector).find('tbody').find('tr').removeClass("d-none");
+        selectNode.html('').append('<option value="0">Show all</option>');
 
         // For each row
         $(tableSelector).find('tbody').find('tr').each(function(i, e) {
@@ -82,6 +86,7 @@ $(function () {
         $.post('create.php', data, function(response){
             if(response.ok){
                 $("#users-table-index tbody").append('<tr>'+response.row+'</tr>');
+                tableFilterInit('#users-table-index', 2, '#users-table-filter-index');
             }
             insertFormNotice(response.ok, response.message);
         }, "json");

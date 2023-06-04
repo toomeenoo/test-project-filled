@@ -35,9 +35,7 @@
                         <span>
                             Select only users from city: 
                         </span>
-                        <select class="form-select-sm" id="users-table-filter-index">
-                            <option value="0">All cities</option>
-                        </select>
+                        <select class="form-select-sm" id="users-table-filter-index"></select>
                     </div>
                 </div>
             </div>
